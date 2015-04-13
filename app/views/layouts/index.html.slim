@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title Shop
+    = stylesheet_link_tag "index", media: "all", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  body
+    #header-wrap
+    	header
+    	  #logo LOGO
+    	  #nav-wrap
+    	  #cart-wrap
+    	  	#cart
+    	  	  = image_tag 'cart.png'
+    	  	  span.product-counter 1
+    	  	  span.place-order Оформить заказ
+    	  	  span.clear-cart Очистить корзину
+    #content-wrap
+      #filter
+        .topic
+          = image_tag "idea.png"
+          p Подобрать матрас
+          = form_tag '/filter', method: "get", remote: true
+            = select_tag :select_collection, options_for_select([["Звездная", "Звездная"],
+                                                                 ["Элит", "Элит"],
+                                                                 ["Vitablue", "Vitablue"],
+                                                                 ["Детская", "Детская"]])
+            = button_to "Подобрать", {class: "pick-up"}
+      #help-panel
+      #catalog
+        #mattresses
+          == yield
+      #ads-panel
+        .sales
+        .top-sales
+    = javascript_include_tag "application", "data-turbolinks-track" => true

@@ -1,0 +1,16 @@
+div.mattress
+  = image_tag mattress.avatar.url
+  .description
+    ul.prices
+   	  li.visible
+   	    | от 
+   	    = number_to_currency(mattress.prices.first.title, unit: "р.", delimiter: " ", format: "%n %u",
+   	      precision: 0)
+      - mattress.prices.each do |elem|
+	      li = number_to_currency(elem.title, unit: "р.", delimiter: " ", format: "%n %u", precision: 0)
+    = link_to mattress.title, mattress_path(mattress)
+    = image_tag 'addcart.png', class: 'add-cart'
+    - sizes = [['Размер', 0]] 
+    - mattress.sizes.each_with_index {|elem, i| sizes << [elem.title, i + 1]}
+    = select_tag :select_size, options_for_select(sizes)
+= render partial: 'pagination'

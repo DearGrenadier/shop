@@ -2,19 +2,22 @@ doctype html
 html
   head
     title Shop
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
-body
-  div#header-wrap
-  	header
-  	  div#logo LOGO
-  	  div#nav-wrap
-  	  div#cart-wrap
-  	  	div#cart
-  	  	  = image_tag 'cart.png'
-  	  	  span.product-counter 5
-  	  	  span.place-order Оформить заказ
-  	  	  span.clear-cart Очистить корзину
-  == yield
-
+  body
+    div#header-wrap
+  	  header
+  	    div#logo LOGO
+  	    div#nav-wrap
+  	    div#cart-wrap
+  	  	  div#cart
+  	  	    = image_tag 'cart.png'
+  	  	    span.product-counter 1
+  	  	    span.place-order Оформить заказ
+  	  	    span.clear-cart Очистить корзину
+    #content-wrap
+      #ads-panel
+        .sales
+      == yield
+      #ads-panel
+        .top-sales

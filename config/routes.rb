@@ -1,4 +1,7 @@
 Shop::Application.routes.draw do
+  devise_for :admins
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,6 +56,7 @@ Shop::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  resources :index
+  resources :mattresses
+  get '/filter', to: 'mattresses#filter'
+  root to: 'mattresses#index'
 end
