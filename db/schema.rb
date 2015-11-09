@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408205118) do
+ActiveRecord::Schema.define(version: 20150406232829) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "admins", force: true do |t|
     t.string   "email",               default: "", null: false
@@ -29,44 +32,21 @@ ActiveRecord::Schema.define(version: 20150408205118) do
     t.datetime "updated_at"
   end
 
-  add_index "admins", ["email"], name: "index_admins_on_email", unique: true
-
-  create_table "mattresses", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "collection"
-  end
+  add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
 
   create_table "prices", force: true do |t|
-    t.integer  "title"
+    t.integer  "price"
     t.integer  "size_id"
     t.integer  "mattress_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "prices", ["mattress_id"], name: "index_prices_on_mattress_id"
-  add_index "prices", ["size_id"], name: "index_prices_on_size_id"
-
-  create_table "size_prices", force: true do |t|
-    t.integer  "mattress_id"
-    t.integer  "50x50"
-    t.integer  "100x100"
-    t.integer  "150x150"
-    t.integer  "200x200"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "size_prices", ["mattress_id"], name: "index_size_prices_on_mattress_id"
+  add_index "prices", ["mattress_id"], name: "index_prices_on_mattress_id", using: :btree
+  add_index "prices", ["size_id"], name: "index_prices_on_size_id", using: :btree
 
   create_table "sizes", force: true do |t|
-    t.string   "title"
+    t.string   "size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,7 +1,7 @@
 class CreateSizes < ActiveRecord::Migration
   def change
     create_table :sizes do |t|
-      t.string :title
+      t.string :size, index: true
 
       t.timestamps
     end

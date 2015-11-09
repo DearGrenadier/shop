@@ -1,7 +1,7 @@
 class CreatePrices < ActiveRecord::Migration
   def change
     create_table :prices do |t|
-      t.integer :title
+      t.integer :price
       t.belongs_to :size, index: true
       t.belongs_to :mattress, index: true
       t.timestamps
